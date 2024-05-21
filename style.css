@@ -26,6 +26,21 @@
   background: #1e1e1e;
 }
 
+.country-mini__card{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  text-align: center;
+  place-items: center;
+
+  top: 50%;
+  left: 50%;
+
+  height: auto;
+  width: auto;
+}
+
+
 .countries-list{
   overflow: hidden;
   overflow-y: auto; /* Csak függőleges görgetés */
@@ -37,9 +52,14 @@
 
 .countries-list__element > .country-capital{
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .countries-list__element{
   margin-left: 0.5rem;
 }
 
+.flag{
+  height: 2rem;
+  width: 3.5rem;
+}

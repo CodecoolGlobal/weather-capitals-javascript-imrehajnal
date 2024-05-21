@@ -1,6 +1,6 @@
 import './style.css'
 import getCountries from './api-client/getCountries';
-import getCountryDetails from './api-client/getCountrieDetails';
+import getCountryDetails from './api-client/getCountriyDetails.js';
 import { _el } from './utils';
 import getWeather from './api-client/getWeatherDetails.js';
 
@@ -39,11 +39,17 @@ async function activateCountry(el) {
 
 async function main() {
   const countries = await getCountries();
-
-  const ul = _el('div', { className: 'countries-list' });
+  
+  const div = _el('div', { className: 'countries-list' });
   const countriesCard = document.querySelector('#countriesCard');
-
+  
   for (const country of countries) {
+    const countryData = await getCountryDetails(country.cca3);
+    const countryFlag = countryData.flags.svg;
+    const flag = _el('img', { className: 'flag', src: `${countryFlag}`});
+
+    const countryDiv = _el('div', { className: 'country-mini__card' });
+
     const countryUl = _el('h1', {
       innerText: country.name.common,
       className: 'countries-list__element'
@@ -58,13 +64,15 @@ async function main() {
     capitalLi.dataset.cc = country.cca3
     countryUl.dataset.cc = country.cca3;
 
-    ul.append(countryUl);
+    countryUl.append(capitalLi);
+    countryDiv.append(flag, countryUl)
+
+    div.append(countryDiv);
     countryUl.onclick = handleCountryClick;
 
-    countryUl.append(capitalLi);
   }
   
-  countriesCard.append(ul);
+  countriesCard.append(div);
 
   // const countriesListUl = document.querySelector('.countries-list');
   const controlPanel = _el('div', { className: 'control-panel'});
