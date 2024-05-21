@@ -2,6 +2,7 @@ import './style.css'
 import getCountries from './api-client/getCountries';
 import getCountryDetails from './api-client/getCountrieDetails';
 import { _el } from './utils';
+import { neighboringCapitals } from './neighboring-capitals';
 
 // document.querySelector('#app').innerHTML = `
 //   <div>
@@ -28,6 +29,12 @@ async function main() {
     li.append(capitalLi);
     }
   app.append(ul);
+
+  neighboringCapitals.addEventListener('click', () => {
+    let data = neighboringCapitals;
+    app.append(data);
+  })
+
 }
 
 
