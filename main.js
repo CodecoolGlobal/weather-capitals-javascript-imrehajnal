@@ -96,7 +96,8 @@ async function main() {
 
     if (activeElement) {
       const nextSibling = activeElement.nextElementSibling;
-      choosenCountry = nextSibling.dataset.cc;
+      const parentDiv = activeElement.closest('.country-mini__card');
+      choosenCountry = parentDiv.nextElementSibling.dataset.cc;
       console.log(choosenCountry);
       if (nextSibling) {
         activateCountry(nextSibling);
