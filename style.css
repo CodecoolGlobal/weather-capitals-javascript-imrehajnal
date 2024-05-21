@@ -6,3 +6,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.countries-list__element{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.country-capital{
+  font-weight: normal;
+}

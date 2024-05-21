@@ -15,13 +15,18 @@ async function main() {
   const ul = _el('ul', { className: 'countries-list' });
 
   for (const country of countries) {
-    const li = _el('li', {
+    const li = _el('ul', {
       innerText: country.name.common,
       className: 'countries-list__element'
     });
+    const capitalLi = _el('li', 
+    { innerText: country.capitals[0],
+      className: 'country-capital'
+    });
     li.dataset.cc = country.cca3;
     ul.append(li);
-  }
+    li.append(capitalLi);
+    }
   app.append(ul);
 }
 
