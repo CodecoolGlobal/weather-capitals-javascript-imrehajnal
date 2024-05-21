@@ -94,31 +94,40 @@ async function main() {
   nextButton.onclick = () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
-
+  
     if (activeElement) {
-      const nextSibling = activeElement.nextElementSibling;
       const parentDiv = activeElement.closest('.country-mini__card');
-      choosenCountry = parentDiv.nextElementSibling.dataset.cc;
-      console.log(choosenCountry);
-      if (nextSibling) {
-        activateCountry(nextSibling);
+      const nextDiv = parentDiv.nextElementSibling;
+  
+      if (nextDiv) {
+        const nextH1 = nextDiv.querySelector('h1');
+        if (nextH1) {
+          choosenCountry = nextH1.dataset.cc;
+          console.log(choosenCountry);
+          activateCountry(nextH1);
+        }
       }
     }
-  }
+  };
 
   prevButton.onclick = () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
-
+  
     if (activeElement) {
-      const prevSibling = activeElement.previousElementSibling;
-      choosenCountry = prevSibling.dataset.cc;
-      console.log(choosenCountry);
-      if (prevSibling) {
-        activateCountry(prevSibling);
+      const parentDiv = activeElement.closest('.country-mini__card');
+      const prevDiv = parentDiv.previousElementSibling;
+  
+      if (prevDiv) {
+        const prevH1 = prevDiv.querySelector('h1');
+        if (prevH1) {
+          choosenCountry = prevH1.dataset.cc;
+          console.log(choosenCountry);
+          activateCountry(prevH1);
+        }
       }
     }
-  }
+  };
 
 
   const weatherDetails = await getWeather();
@@ -127,10 +136,10 @@ async function main() {
   countryDetails('HUN');
 
 
-  neighboringCapitals.addEventListener('click', () => {
-    let data = neighboringCapitals;
-    app.append(data);
-  })
+  // neighboringCapitals.addEventListener('click', () => {
+  //   let data = neighboringCapitals;
+  //   app.append(data);
+  // })
 
 }
 
