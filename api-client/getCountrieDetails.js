@@ -1,5 +1,4 @@
-const DETAILS =
-  "https://jvvkjy8utk.execute-api.eu-central-1.amazonaws.com/tourist/api/countries/by-cca3";
+const DETAILS = "https://jvvkjy8utk.execute-api.eu-central-1.amazonaws.com/tourist/api/countries/by-cca3";
 
 let CountryDetails = {
   name: {
