@@ -2,6 +2,7 @@ import './style.css'
 import getCountries from './api-client/getCountries';
 import getCountryDetails from './api-client/getCountriyDetails.js';
 import { _el } from './utils';
+import { neighboringCapitals } from './neighboring-capitals';
 import getWeather from './api-client/getWeatherDetails.js';
 
 export let choosenCountry = '';
@@ -124,6 +125,12 @@ async function main() {
   console.log(weatherDetails);
 
   countryDetails('HUN');
+
+
+  neighboringCapitals.addEventListener('click', () => {
+    let data = neighboringCapitals;
+    app.append(data);
+  })
 
 }
 
