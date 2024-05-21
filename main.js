@@ -143,9 +143,9 @@ async function main() {
 
           //////////////////////////////////////////////////////////////
           const allCards = document.querySelectorAll('.country-mini__card');
-          allCards.forEach(card => card.classList.remove('blue'));
+          allCards.forEach(card => card.classList.remove('country-mini__card--active'));
 
-          prevDiv.classList.add('blue');
+          prevDiv.classList.add('country-mini__card--active');
           //////////////////////////////////////////////////////////////
         }
       }
