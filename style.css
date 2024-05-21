@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #fff;
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,7 +29,7 @@ body {
 
 #countriesCard{
   width: 15rem;
-  height: 55rem;
+  height: 51rem;
   background: #1e1e1e;
   margin-top: 2rem;
   margin-left: 2rem;
@@ -46,8 +49,13 @@ body {
   margin: 0.5rem;
   border: 1px solid rgb(75, 75, 75);
   border-radius: 3px;
+  background-color: #272727;
+
 }
 
+.country-mini__card--active{
+  background-color: aqua;
+}
 
 .countries-list{
   overflow: hidden;
@@ -55,7 +63,7 @@ body {
   overflow-x: hidden; /* Vízszintes görgetés tiltása */
   scrollbar-width: none;
   width: 15rem;
-  height: 52.5rem;
+  height: 48rem;
 }
 
 .countries-list__element > .country-capital{
@@ -70,5 +78,28 @@ body {
 .flag{
   height: 2rem;
   width: 3.5rem;
-  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 6px;
+  object-fit: cover;
 }
+
+.control-panel {
+}
+
+button {
+  width: 5rem;
+  height: 1.7rem;
+  border-radius: 4px;
+  border: 1px solid rgb(75, 75, 75);
+  margin: 0.5rem;
+  margin-left: 1.4rem;
+  background: linear-gradient(180deg, #4b90f7e0 0%, #3679f6d3 100%);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+
+
+

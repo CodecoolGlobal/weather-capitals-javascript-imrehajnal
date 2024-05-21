@@ -80,12 +80,12 @@ async function main() {
 
   const nextButton = _el('button', {
     className: 'country__next_btn',
-    innerText: 'Next'
+    innerText: 'Next >'
   });
 
   const prevButton = _el('button', {
     className: 'country__prev_btn',
-    innerText: 'Prev'
+    innerText: '< Prev'
   });
 
   controlPanel.append(prevButton, nextButton);
