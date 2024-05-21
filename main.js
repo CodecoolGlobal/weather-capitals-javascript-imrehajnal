@@ -19,6 +19,14 @@ async function handleCountryClick(event) {
   choosenCountry = target.dataset.cc;
   console.log(choosenCountry);
   await activateCountry(target);
+
+  /////////////////////////////////////////////////////
+  const parentCard = this.closest('.country-mini__card');
+  const allCards = document.querySelectorAll('.country-mini__card');
+  allCards.forEach(card => card.classList.remove('country-mini__card--active'));
+  parentCard.classList.add('country-mini__card--active');
+  /////////////////////////////////////////////////////
+
 }
 
 async function activateCountry(el) {
@@ -105,6 +113,14 @@ async function main() {
           choosenCountry = nextH1.dataset.cc;
           console.log(choosenCountry);
           activateCountry(nextH1);
+
+
+          ///////////////////////////////////////////////////////////////
+          const allCards = document.querySelectorAll('.country-mini__card');
+          allCards.forEach(card => card.classList.remove('country-mini__card--active'));
+
+          nextDiv.classList.add('country-mini__card--active');
+          //////////////////////////////////////////////////////////////
         }
       }
     }
@@ -124,11 +140,17 @@ async function main() {
           choosenCountry = prevH1.dataset.cc;
           console.log(choosenCountry);
           activateCountry(prevH1);
+
+          //////////////////////////////////////////////////////////////
+          const allCards = document.querySelectorAll('.country-mini__card');
+          allCards.forEach(card => card.classList.remove('blue'));
+
+          prevDiv.classList.add('blue');
+          //////////////////////////////////////////////////////////////
         }
       }
     }
   };
-
 
   const weatherDetails = await getWeather();
   console.log(weatherDetails);
