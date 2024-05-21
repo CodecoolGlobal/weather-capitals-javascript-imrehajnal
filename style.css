@@ -15,3 +15,31 @@
 .country-capital{
   font-weight: normal;
 }
+
+.countries-list__element--active{
+  background-color: aqua;
+}
+
+#countriesCard{
+  width: 15rem;
+  height: 55rem;
+  background: #1e1e1e;
+}
+
+.countries-list{
+  overflow: hidden;
+  overflow-y: auto; /* Csak függőleges görgetés */
+  overflow-x: hidden; /* Vízszintes görgetés tiltása */
+  scrollbar-width: none;
+  width: 15rem;
+  height: 50rem;
+}
+
+.countries-list__element > .country-capital{
+  margin-top: 0;
+}
+
+.countries-list__element{
+  margin-left: 0.5rem;
+}
+

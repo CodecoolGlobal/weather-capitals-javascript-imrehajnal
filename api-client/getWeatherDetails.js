@@ -3,7 +3,7 @@
 
 const capital = 'Budapest';
 const apiKey = '155ce8ba19d14d2999b85105242105';
-const details = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${capital}&aqi=no`;
+const details = `https://api.weatherapi.com/v1/marine.json?key=${apiKey}&q=${capital}&days=5`;
 
 export default async function getWeather(){
   try {
