@@ -44,6 +44,16 @@
     width: 50px;
 }
 
+.max-temp {
+  font-size: large;
+}
+
+
+.max-temp::after {
+  font-size: large;
+  content: '°C';
+}
+
 
 .card-header {
   display: grid;
