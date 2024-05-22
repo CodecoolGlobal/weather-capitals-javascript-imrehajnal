@@ -49,10 +49,17 @@ function displayWeatherBody(parent, days, currentDay){
     const date = getWeekday(day.date);
     if(date === currentDay){
       for(const hour of day.hour){
+        const temperature = Math.round(hour.temp_c);
         const hourDiv = _el('div', { className: 'weather-card-body__hour-div' })
         const date = new Date(hour.time);
-        const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}`});
-        hourDiv.append(clockH1);
+        const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}:00`});
+        const airText = _el('h2', { className: 'weather-text', innerText: hour.condition.text })
+        const icon = _el('img', { className: 'weather-icon', src: hour.condition.icon })
+        const tempText = _el('h2', { className: 'weather-text', innerText: `${temperature} Celsius` })
+        const windText = _el('h2', { className: 'weather-text', innerText: `${hour.wind_kph} kph` })
+        
+        
+        hourDiv.append(clockH1, airText, icon, tempText, windText);
         parent.append(hourDiv);
       }
     }
