@@ -108,7 +108,7 @@ button {
 @media (max-width: 1366px), (max-height: 768px) {
   #countriesCard{
     width: 15rem;
-    height: 40.4rem;
+    height: 30.4rem;
     background: #1e1e1e;
     margin-top: 2rem;
     margin-left: 2rem;
@@ -138,7 +138,8 @@ button {
     overflow-x: hidden; /* Vízszintes görgetés tiltása */
     scrollbar-width: none;
     width: 15rem;
-    height: 37.7rem;
+    height: 27.7rem;
   }
 }
+
 
