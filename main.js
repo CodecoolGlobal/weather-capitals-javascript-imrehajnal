@@ -33,10 +33,12 @@ function displayWeatherDays(parent, days) {
   for (const day of days) {
     const dayOfWeek = getWeekday(day.date);
     const temp = Math.round(day.day.maxtemp_c);
-    const dayDiv = _el('div', { className: 'weather-days', id: dayOfWeek});
+    const dayDiv = _el('div', { className: 'weather-days', id: dayOfWeek });
     const dayH1 = _el('h1', { className: 'weather-days__h1', innerText: `${dayOfWeek}` });
     const icon = _el('img', { className: 'weather-icon', src: day.day.condition.icon });
     const maxTemp = _el('h2', { className: 'max-temp', innerText: temp });
+
+    dayDiv.onclick = handleWeatherClick; 
 
     dayDiv.append(dayH1, icon, maxTemp);
     parent.append(dayDiv);
@@ -44,21 +46,19 @@ function displayWeatherDays(parent, days) {
   }
 }
 
-function displayWeatherBody(parent, days, currentDay){
-  for(const day of days){
+function displayWeatherBody(parent, days, currentDay) {
+  for (const day of days) {
     const date = getWeekday(day.date);
-    if(date === currentDay){
-      for(const hour of day.hour){
+    if (date === currentDay) {
+      for (const hour of day.hour) {
         const temperature = Math.round(hour.temp_c);
         const hourDiv = _el('div', { className: 'weather-card-body__hour-div' })
         const date = new Date(hour.time);
-        const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}:00`});
+        const clockH1 = _el('h1', { className: 'weather-card-body__text', innerText: `${date.getHours()}:00` });
         const airText = _el('h2', { className: 'weather-text', innerText: hour.condition.text })
         const icon = _el('img', { className: 'weather-icon', src: hour.condition.icon })
         const tempText = _el('h2', { className: 'weather-text', innerText: `${temperature}°C` })
         const windText = _el('h2', { className: 'weather-text', innerText: `${hour.wind_kph} kph` })
-        
-        
         hourDiv.append(clockH1, airText, icon, tempText, windText);
         parent.append(hourDiv);
       }
@@ -67,20 +67,36 @@ function displayWeatherBody(parent, days, currentDay){
 }
 
 function displayWeather(country) {
-  const card = document.querySelector('#weatherCard')
+  const card = document.querySelector('#weatherCard');
   card.innerHTML = '';
 
   const days = country.forecast.forecastday;
   const countryName = country.location.country;
   const capital = country.location.name;
 
-  const cardHeader = _el('div', { className: 'card-header' });  //days
-  const cardBody = _el('div', { className: 'card-body' });      //weather hours
+  const cardHeader = _el('div', { className: 'card-header' }); // days
+  const cardBody = _el('div', { className: 'card-body' }); // weather hours
 
   displayWeatherDays(cardHeader, days);
   displayWeatherBody(cardBody, days, currentDay);
 
-  weatherCard.append(cardHeader, cardBody);
+  card.append(cardHeader, cardBody);
+
+  weatherCard.append(card); 
+}
+
+async function handleWeatherClick(event) {
+  const target = event.currentTarget;
+  currentDay = target.id;
+  console.log(currentDay);
+
+  const cardBody = document.querySelector('.card-body');
+  cardBody.innerHTML = '';
+
+  const countryWeather = await getWeather(choosenCountryName);
+  const days = countryWeather.forecast.forecastday;
+
+  displayWeatherBody(cardBody, days, currentDay);
 }
 
 async function handleCountryClick(event) {
@@ -126,7 +142,6 @@ function findCountryName(countries, cca3) {
 }
 
 async function main() {
-
   const div = _el('div', { className: 'countries-list' });
   const countriesCard = document.querySelector('#countriesCard');
 
@@ -142,21 +157,19 @@ async function main() {
       className: 'countries-list__element'
     });
 
-    const capitalLi = _el('h3',
-      {
-        innerText: country.capitals[0],
-        className: 'country-capital'
-      });
+    const capitalLi = _el('h3', {
+      innerText: country.capitals[0],
+      className: 'country-capital'
+    });
 
-    capitalLi.dataset.cc = country.cca3
+    capitalLi.dataset.cc = country.cca3;
     countryUl.dataset.cc = country.cca3;
 
     countryUl.append(capitalLi);
-    countryDiv.append(flag, countryUl)
+    countryDiv.append(flag, countryUl);
 
     div.append(countryDiv);
     countryUl.onclick = handleCountryClick;
-
   }
 
   countriesCard.append(div);
@@ -191,13 +204,10 @@ async function main() {
           choosenCountryName = findCountryName(countries, choosenCountry);
           activateCountry(nextH1);
 
-
-          ///////////////////////////////////////////////////////////////
           const allCards = document.querySelectorAll('.country-mini__card');
           allCards.forEach(card => card.classList.remove('country-mini__card--active'));
 
           nextDiv.classList.add('country-mini__card--active');
-          //////////////////////////////////////////////////////////////
         }
       }
     }
@@ -218,17 +228,14 @@ async function main() {
           choosenCountryName = findCountryName(countries, choosenCountry);
           activateCountry(prevH1);
 
-          //////////////////////////////////////////////////////////////
           const allCards = document.querySelectorAll('.country-mini__card');
           allCards.forEach(card => card.classList.remove('country-mini__card--active'));
 
           prevDiv.classList.add('country-mini__card--active');
-          //////////////////////////////////////////////////////////////
         }
       }
     }
   };
 }
-
 
 main();
