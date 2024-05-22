@@ -23,7 +23,6 @@
 .card-body{
   display: grid;
   grid-template-columns: repeat(24, 1fr);
-  background-color: #1e1e1e;
     width: 6rem;
     margin-top: 2rem;
     margin-left: 10rem;
@@ -32,7 +31,10 @@
     overflow-y: auto;
     width: 60rem;
     height: 28.1rem;
+    background: rgba(28, 26, 34, 0.199);
 }
+
+
 
 .weather-card-body__hour-div{
   background-color: #272727;
@@ -94,7 +96,6 @@
 }
 
 #weatherCard {
-  border: 1px solid red;
   margin-left: 0;
 }
 
@@ -137,6 +138,7 @@
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 30%;
   margin-left: 18rem;
+  margin-top: 5rem;
   
 }
 
@@ -153,16 +155,12 @@ body {
   font-weight: normal;
 }
 
-.countries-list__element--active {
-  /*background-color: aqua;*/
-}
-
 #countriesCard {
-  width: 15rem;
-  height: 50.4rem;
+  width: 20rem;
+  height: 54rem;
   background: #1e1e1e;
-  margin-top: 2rem;
-  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-left: 3rem;
   border-radius: 10px;
 }
 
@@ -175,7 +173,7 @@ body {
   top: 50%;
   left: 50%;
   height: auto;
-  width: auto;
+  width: 80%;
   margin: 0.5rem;
   /*border: 1px solid rgb(75, 75, 75);*/
   border-radius: 3px;
@@ -194,8 +192,8 @@ body {
   overflow-x: hidden;
   /* Vízszintes görgetés tiltása */
   scrollbar-width: none;
-  width: 15rem;
-  height: 47.1rem;
+  width: 23.7rem;
+  height: 50.3rem;
 }
 
 .countries-list__element>.country-capital {
@@ -321,7 +319,8 @@ button {
       border-radius: 20px 20px 0 0;
       gap: 0.25rem;
       overflow-y: auto;
-      width: 30rem;
-      height: 14.1rem;
+      width: 50rem;
+      height: 16.1rem;
+      
   }
 }
