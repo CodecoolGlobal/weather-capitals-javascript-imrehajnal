@@ -9,6 +9,8 @@ const weatherCard = document.querySelector('#weatherCard');
 
 export let choosenCountry = '';
 export let choosenCountryName = '';
+let currentDay = 'Wed';
+
 const countries = await getCountries();
 
 async function countryDetails(cca3) {
@@ -26,26 +28,51 @@ function getWeekday(dateString) {
   return weekday;
 }
 
+function displayWeatherDays(parent, days) {
+  let counter = 0;
+  for (const day of days) {
+    const dayOfWeek = getWeekday(day.date);
+    const temp = Math.round(day.day.maxtemp_c);
+    const dayDiv = _el('div', { className: 'weather-days', id: dayOfWeek});
+    const dayH1 = _el('h1', { className: 'weather-days__h1', innerText: `${dayOfWeek}` });
+    const icon = _el('img', { className: 'weather-icon', src: day.day.condition.icon });
+    const maxTemp = _el('h2', { className: 'max-temp', innerText: temp });
+
+    dayDiv.append(dayH1, icon, maxTemp);
+    parent.append(dayDiv);
+    counter++;
+  }
+}
+
+function displayWeatherBody(parent, days, currentDay){
+  for(const day of days){
+    const date = getWeekday(day.date);
+    if(date === currentDay){
+      for(const hour of day){
+        const hourDiv = _el('div', { className: 'weather-card-body__hour-div' })
+        const date = new Date(hour.time);
+        const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}`});
+        hourDiv.append(clockH1);
+        parent.append(hourDiv);
+      }
+    }
+  }
+}
+
 function displayWeather(country) {
   const card = document.querySelector('#weatherCard')
   card.innerHTML = '';
+
   const days = country.forecast.forecastday;
   const countryName = country.location.country;
   const capital = country.location.name;
 
-  const cardHeader = _el('div', {className: 'card-header'});  //days
-  const cardBody = _el('div', {className: 'card-body'});      //weather hours
+  const cardHeader = _el('div', { className: 'card-header' });  //days
+  const cardBody = _el('div', { className: 'card-body' });      //weather hours
 
-  for(const day of days){
-    const dayOfWeek = getWeekday(day.date);
-    const dayDiv = _el('div', { className: 'weather-days' });
-    const dayH1 = _el('h1', { className: 'weather-days__h1', innerText: `${dayOfWeek}` });
-    const icon = _el('img', {className: 'weather-icon', src: day.day.condition.icon });
-    const maxTemp = _el('h2', { className: 'max-temp', innerText: day.day.maxtemp_c });
+  displayWeatherDays(cardHeader, days);
+  // displayWeatherBody(cardBody, days, currentDay);
 
-    dayDiv.append(dayH1, icon, maxTemp);
-    cardHeader.append(dayDiv);
-  }
   weatherCard.append(cardHeader);
 }
 
