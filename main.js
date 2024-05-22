@@ -28,6 +28,31 @@ function getWeekday(dateString) {
   return weekday;
 }
 
+function displayWeatherCountryName(parent, currDay, currLocation){
+  const titleDiv = _el('div', { className: 'weather-card__title' })
+  const tempDiv = _el('div', { className: 'weather-card__title' })
+  const infoDiv = _el('div', { className: 'weather-card__title' })
+
+  const countryName = _el('h1', {className: 'displayed-country__name', innerText: currLocation.country});
+  const capitalName = _el('h2', {className: 'displayed-country__name', innerText: currLocation.name});
+  const time = _el('h3', {className: 'displayed-country__text', innerText: currLocation.localtime});
+
+  const icon = _el('img', {className: 'displayed-country__icon', src: currDay.day.condition.icon});
+  const tempMin = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.mintemp_c});
+  const tempMax = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxtemp_c});
+
+  const air = _el('h2', {className: 'displayed-country__text', innerText: currDay.day.condition.text});
+  const humidity = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.avghumidity});
+  const wind = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxwind_kph});
+
+
+  titleDiv.append(countryName, capitalName, time);
+  tempDiv.append(icon, tempMin, tempMax);
+  infoDiv.append(air, humidity, wind);
+
+  parent.append(titleDiv, tempDiv, infoDiv);
+}
+
 function displayWeatherDays(parent, days) {
   let counter = 0;
   for (const day of days) {
@@ -71,18 +96,20 @@ function displayWeather(country) {
   card.innerHTML = '';
 
   const days = country.forecast.forecastday;
-  const countryName = country.location.country;
-  const capital = country.location.name;
+  const day = country.forecast.forecastday[0];
+  const currentLocation = country.location;
 
+  const cardName = _el('div', { className: 'card-header__name'}); //Fejléc a fejléc felett
   const cardHeader = _el('div', { className: 'card-header' }); // days
   const cardBody = _el('div', { className: 'card-body' }); // weather hours
 
+  displayWeatherCountryName(cardName, day, currentLocation);
   displayWeatherDays(cardHeader, days);
   displayWeatherBody(cardBody, days, currentDay);
 
-  card.append(cardHeader, cardBody);
+  card.append(cardName, cardHeader, cardBody);
 
-  // weatherCard.append(card);   ?????
+  // weatherCard.append(card); //????????
 }
 
 async function handleWeatherClick(event) {
@@ -106,6 +133,8 @@ async function handleCountryClick(event) {
   choosenCountryName = findCountryName(countries, choosenCountry);
   console.log(await getWeather(choosenCountryName));
   displayWeather(await getWeather(choosenCountryName));
+
+  // displayNeighbours(choosenCountry);
 
   /////////////////////////////////////////////////////
   const parentCard = this.closest('.country-mini__card');
@@ -140,6 +169,14 @@ function findCountryName(countries, cca3) {
     }
   }
 }
+
+// function findNeighbours(){
+
+// }
+
+// function displayNeighbours(country){
+
+// }
 
 async function main() {
   const div = _el('div', { className: 'countries-list' });
