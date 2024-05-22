@@ -27,6 +27,8 @@ function getWeekday(dateString) {
 }
 
 function displayWeather(country) {
+  const card = document.querySelector('#weatherCard')
+  card.innerHTML = '';
   const days = country.forecast.forecastday;
   const countryName = country.location.country;
   const capital = country.location.name;
