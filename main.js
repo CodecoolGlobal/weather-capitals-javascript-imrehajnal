@@ -55,7 +55,7 @@ function displayWeatherBody(parent, days, currentDay){
         const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}:00`});
         const airText = _el('h2', { className: 'weather-text', innerText: hour.condition.text })
         const icon = _el('img', { className: 'weather-icon', src: hour.condition.icon })
-        const tempText = _el('h2', { className: 'weather-text', innerText: `${temperature} Celsius` })
+        const tempText = _el('h2', { className: 'weather-text', innerText: `${temperature}°C` })
         const windText = _el('h2', { className: 'weather-text', innerText: `${hour.wind_kph} kph` })
         
         

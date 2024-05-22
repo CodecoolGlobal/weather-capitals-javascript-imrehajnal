@@ -21,22 +21,46 @@
   background-color: #1e1e1e;
     width: 6rem;
     margin-top: 2rem;
-    margin-left: 3.5rem;
+    margin-left: 10rem;
     border-radius: 20px 20px 0 0;
-    gap: 3rem;
-    overflow-y: auto;
+    gap: 0.5rem;
     overflow-y: auto;
     width: 60rem;
-    height: 35.1rem;
+    height: 28.1rem;
 }
 
 .weather-card-body__hour-div{
-  background-color: #8a1919;
+  background-color: #272727;
     width: 8rem;
     margin-top: 2rem;
-    margin-left: 1.45rem;
+    margin-left: 1.3rem;
     border-radius: 20px;
+    text-align: center;
+    height: 25rem;
 }
+
+.weather-card-body__text {
+  font-size: large;
+
+}
+
+.weather-card-body__text::after {
+  background-color: #efefef; 
+    content: '';
+    display: block;
+    height: 2px;
+    margin-left: 1.8rem;
+    margin-top: 0.5rem;
+    width: 70px;
+
+}
+
+
+.weather-text {
+  font-size: large;
+  height: 3rem;
+}
+
 
 ::-webkit-scrollbar {
   width: 10px; 
