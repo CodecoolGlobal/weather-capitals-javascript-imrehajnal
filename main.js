@@ -33,22 +33,24 @@ function displayWeatherCountryName(parent, currDay, currLocation){
   const tempDiv = _el('div', { className: 'weather-card__title' })
   const infoDiv = _el('div', { className: 'weather-card__title' })
 
+  const countryNameMain = _el('h1', {className: 'displayed-country__name_main', innerText: 'Current Country'});
   const countryName = _el('h1', {className: 'displayed-country__name', innerText: currLocation.country});
   const capitalName = _el('h2', {className: 'displayed-country__name', innerText: currLocation.name});
   const time = _el('h3', {className: 'displayed-country__text', innerText: currLocation.localtime});
 
+  const currentWeather = _el('h1', {className: 'displayed-country__name_main', innerText: 'Current Weather'});
   const icon = _el('img', {className: 'displayed-country__icon', src: currDay.day.condition.icon});
   const tempMin = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.mintemp_c});
   const tempMax = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxtemp_c});
 
+  const weatherDetails = _el('h1', {className: 'displayed-country__name_main', innerText: 'Weather Details'});
   const air = _el('h2', {className: 'displayed-country__text', innerText: currDay.day.condition.text});
   const humidity = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.avghumidity});
   const wind = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxwind_kph});
 
-
-  titleDiv.append(countryName, capitalName, time);
-  tempDiv.append(icon, tempMin, tempMax);
-  infoDiv.append(air, humidity, wind);
+  titleDiv.append(countryNameMain, countryName, capitalName, time);
+  tempDiv.append(currentWeather, icon, tempMin, tempMax);
+  infoDiv.append(weatherDetails, air, humidity, wind);
 
   parent.append(titleDiv, tempDiv, infoDiv);
 }

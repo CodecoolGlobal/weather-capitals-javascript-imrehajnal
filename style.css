@@ -31,13 +31,13 @@
     overflow-y: auto;
     width: 90.5rem;
     height: 24.3rem;
-    background: #1e1e1e;
+    background: #00000069;
 }
 
 
 
 .weather-card-body__hour-div{
-  background-color: rgb(59, 59, 59);
+  background-color: rgba(31, 31, 31, 0.274);
     width: 5rem;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
@@ -154,13 +154,23 @@
 .card-header {
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 30%;
-  margin-left: 18rem;
+  margin-left: 28rem;
   margin-top: 0rem;
   
 }
 
-body {
-  background: rgb(17, 16, 21);
+body::before {
+  content: "";
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image: url("photorealistic-style-clouds.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(3px);
 }
 
 .countries-list__element {
@@ -175,7 +185,7 @@ body {
 #countriesCard {
   width: 20rem;
   height: 54rem;
-  background: #1e1e1e;
+  background: #00000069;
   margin-top: 3rem;
   margin-left: 3rem;
   border-radius: 10px;
@@ -194,7 +204,7 @@ body {
   margin: 0.5rem;
   /*border: 1px solid rgb(75, 75, 75);*/
   border-radius: 3px;
-  background-color: #272727;
+  background-color: rgba(87, 87, 87, 0.233);
 
 }
 
@@ -250,13 +260,13 @@ button {
 }
 
 .country-mini__card--active {
-  background-color: #363636;
+  background-color: rgba(41, 41, 41, 0.541);
   border: 1px solid rgb(92, 92, 92);
 }
 
 .card-header__name {
-  border: 1px solid #363636;
-  background-color: #1e1e1e;
+  border: 1px solid #555555;
+  background-color: #00000069;
   margin-top: 3.0rem;
   margin-left: 2rem;
   height: 15rem;
@@ -267,7 +277,13 @@ button {
 .weather-card__title{
   text-align: center;
   margin: 1rem;
-  
+}
+
+.displayed-country__name_main {
+  font-size: larger;
+  font-weight: 900;
+  border-radius: 10px;
+  background: #14141496;
 }
 
 
