@@ -83,7 +83,7 @@ function displayWeatherBody(parent, days, currentDay) {
         const airText = _el('h2', { className: 'weather-text', innerText: hour.condition.text })
         const icon = _el('img', { className: 'weather-icon', src: hour.condition.icon })
         const tempText = _el('h2', { className: 'weather-text', innerText: `${temperature}°C` })
-        const windText = _el('h2', { className: 'weather-text', innerText: `${hour.wind_kph} kph` })
+        const windText = _el('h2', { className: 'weather-text', innerText: `${Math.round(hour.wind_kph)} kph` })
         hourDiv.append(clockH1, airText, icon, tempText, windText);
         parent.append(hourDiv);
       }
