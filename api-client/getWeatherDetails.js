@@ -2,7 +2,7 @@ const apiKey = '155ce8ba19d14d2999b85105242105';
 
 export default async function getWeather(capital){
   try {
-      const response = await fetch(`https://api.weatherapi.com/v1/marine.json?key=${apiKey}&q=${capital}&days=5`);
+      const response = await fetch(`https://api.weatherapi.com/v1/marine.json?key=${apiKey}&q=${capital}&days=7`);
       if (!response.ok) {
           throw new Error('Hálózati válasz nem megfelelő.');
       }

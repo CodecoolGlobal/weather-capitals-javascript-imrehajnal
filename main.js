@@ -38,7 +38,7 @@ function displayWeatherDays(parent, days) {
     const icon = _el('img', { className: 'weather-icon', src: day.day.condition.icon });
     const maxTemp = _el('h2', { className: 'max-temp', innerText: temp });
 
-    dayDiv.onclick = handleWeatherClick; 
+    dayDiv.onclick = handleWeatherClick;
 
     dayDiv.append(dayH1, icon, maxTemp);
     parent.append(dayDiv);
@@ -82,7 +82,7 @@ function displayWeather(country) {
 
   card.append(cardHeader, cardBody);
 
-  weatherCard.append(card); 
+  // weatherCard.append(card);   ?????
 }
 
 async function handleWeatherClick(event) {
@@ -189,7 +189,7 @@ async function main() {
   controlPanel.append(prevButton, nextButton);
   countriesCard.append(controlPanel);
 
-  nextButton.onclick = () => {
+  nextButton.onclick = async () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
 
@@ -211,9 +211,11 @@ async function main() {
         }
       }
     }
+    displayWeather(await getWeather(choosenCountryName));
+
   };
 
-  prevButton.onclick = () => {
+  prevButton.onclick = async () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
 
@@ -235,6 +237,7 @@ async function main() {
         }
       }
     }
+  displayWeather(await getWeather(choosenCountryName));
   };
 }
 
