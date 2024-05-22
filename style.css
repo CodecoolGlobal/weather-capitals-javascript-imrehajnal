@@ -15,6 +15,11 @@
   grid-template-columns: 20% 70%;
 }
 
+.card-body{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
 #weatherCard {
   border: 1px solid red;
   margin-left: 0;

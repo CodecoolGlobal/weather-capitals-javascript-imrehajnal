@@ -48,7 +48,7 @@ function displayWeatherBody(parent, days, currentDay){
   for(const day of days){
     const date = getWeekday(day.date);
     if(date === currentDay){
-      for(const hour of day){
+      for(const hour of day.hour){
         const hourDiv = _el('div', { className: 'weather-card-body__hour-div' })
         const date = new Date(hour.time);
         const clockH1 = _el('h1', {className: 'weather-card-body__text', innerText: `${date.getHours()}`});
@@ -71,9 +71,9 @@ function displayWeather(country) {
   const cardBody = _el('div', { className: 'card-body' });      //weather hours
 
   displayWeatherDays(cardHeader, days);
-  // displayWeatherBody(cardBody, days, currentDay);
+  displayWeatherBody(cardBody, days, currentDay);
 
-  weatherCard.append(cardHeader);
+  weatherCard.append(cardHeader, cardBody);
 }
 
 async function handleCountryClick(event) {
