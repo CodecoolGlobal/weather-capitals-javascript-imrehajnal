@@ -120,7 +120,7 @@ button {
 (max-height: 768px) {
   #countriesCard {
     width: 15rem;
-    height: 40.4rem;
+    height: 31.4rem;
     background: #1e1e1e;
     margin-top: 2rem;
     margin-left: 2rem;
@@ -152,6 +152,6 @@ button {
     /* Vízszintes görgetés tiltása */
     scrollbar-width: none;
     width: 15rem;
-    height: 37.7rem;
+    height: 28.7rem;
   }
 }
