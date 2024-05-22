@@ -12,16 +12,58 @@
 
 #app {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 20% 70%;
 }
+
+#weatherCard {
+  border: 1px solid red;
+  margin-left: 0;
+}
+
+.weather-days{
+  background-color: #1e1e1e;
+  width: 6rem;
+  margin-top: 2rem;
+  margin-left: 0.45rem;
+  text-align: center;
+  place-items: center;
+  border-radius: 20px;
+}
+
+.weather-days__h1{
+  font-size: medium;
+}
+
+.weather-days__h1::after{
+    background-color: #efefef; 
+    content: '';
+    display: block;
+    height: 2px;
+    margin-left: 1.4rem;
+    margin-top: 0.5rem;
+    width: 50px;
+}
+
+.max-temp {
+  font-size: large;
+}
+
+
+.max-temp::after {
+  font-size: large;
+  content: '°C';
+}
+
 
 .card-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 14% 14% 14% 14% 14% 30%;
+  margin-left: 18rem;
+  
 }
 
 body {
-  background: #171717;
+  background: rgb(17, 16, 21);
 }
 
 .countries-list__element {
@@ -153,5 +195,41 @@ button {
     scrollbar-width: none;
     width: 15rem;
     height: 28.7rem;
+  }
+
+  .card-header {
+    display: grid;
+    grid-template-columns: 16% 16% 16% 16% 16% 30%;
+    margin-left: 14rem;
+    
+  }
+
+  .weather-days{
+    background-color: #1e1e1e;
+    width: 5rem;
+    margin-top: 2rem;
+    margin-left: 0.45rem;
+    text-align: center;
+    place-items: center;
+    border-radius: 20px;
+  }
+
+  .weather-days__h1::after{
+    background-color: #efefef; 
+    content: '';
+    display: block;
+    height: 2px;
+    margin-left: 1.0rem;
+    margin-top: 0.5rem;
+    width: 50px;
+} 
+  .max-temp {
+    font-size: large;
+  }
+
+
+  .max-temp::after {
+    font-size: large;
+    content: '°C';
   }
 }
