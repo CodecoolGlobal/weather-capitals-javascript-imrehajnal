@@ -212,5 +212,14 @@ button {
     margin-left: 1.0rem;
     margin-top: 0.5rem;
     width: 50px;
-}
+} 
+  .max-temp {
+    font-size: large;
+  }
+
+
+  .max-temp::after {
+    font-size: large;
+    content: '°C';
+  }
 }
