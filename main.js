@@ -165,12 +165,6 @@ async function main() {
 
   countryDetails('HUN');
 
-
-  // neighboringCapitals.addEventListener('click', () => {
-  //   let data = neighboringCapitals;
-  //   app.append(data);
-  // })
-
 }
 
 
