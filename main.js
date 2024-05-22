@@ -5,8 +5,10 @@ import { _el } from './utils';
 import { neighboringCapitals } from './neighboring-capitals';
 import getWeather from './api-client/getWeatherDetails.js';
 
+const weatherCard = document.querySelector('#weatherCard');
+
 export let choosenCountry = '';
-let choosenCountryName = '';
+export let choosenCountryName = '';
 const countries = await getCountries();
 
 async function countryDetails(cca3) {
@@ -16,11 +18,42 @@ async function countryDetails(cca3) {
   }
 }
 
+function getWeekday(dateString) {
+  const date = new Date(dateString);
+  const options = { weekday: 'short' };
+  const formatter = new Intl.DateTimeFormat('en-GB', options);
+  const weekday = formatter.format(date);
+  return weekday;
+}
+
+function displayWeather(country) {
+  const days = country.forecast.forecastday;
+  const countryName = country.location.country;
+  const capital = country.location.name;
+
+  const cardHeader = _el('div', {className: 'card-header'});  //days
+  const cardBody = _el('div', {className: 'card-body'});      //weather hours
+
+  for(const day of days){
+    const dayOfWeek = getWeekday(day.date);
+    const dayDiv = _el('div', { className: 'weather-days' });
+    const dayH1 = _el('h1', { className: 'weather-days__h1', innerText: `${dayOfWeek}` });
+    const icon = _el('img', {className: 'weather-icon', src: day.day.condition.icon });
+    const maxTemp = _el('h2', { className: 'max-temp', innerText: day.day.maxtemp_c });
+
+    dayDiv.append(dayH1, icon, maxTemp);
+    cardHeader.append(dayDiv);
+  }
+  weatherCard.append(cardHeader);
+}
+
 async function handleCountryClick(event) {
   const target = event.currentTarget;
   choosenCountry = target.dataset.cc;
   await activateCountry(target);
   choosenCountryName = findCountryName(countries, choosenCountry);
+  console.log(await getWeather(choosenCountryName));
+  displayWeather(await getWeather(choosenCountryName));
 
   /////////////////////////////////////////////////////
   const parentCard = this.closest('.country-mini__card');
@@ -48,23 +81,23 @@ async function activateCountry(el) {
   const details = await getCountryDetails(cc);
 }
 
-function findCountryName(countries, cca3){
-  for(const country of countries){
-    if (country.cca3 === cca3){
+function findCountryName(countries, cca3) {
+  for (const country of countries) {
+    if (country.cca3 === cca3) {
       return country.name.common;
     }
   }
 }
 
 async function main() {
-  
+
   const div = _el('div', { className: 'countries-list' });
   const countriesCard = document.querySelector('#countriesCard');
-  
+
   for (const country of countries) {
     const countryData = await getCountryDetails(country.cca3);
     const countryFlag = countryData.flags.svg;
-    const flag = _el('img', { className: 'flag', src: `${countryFlag}`});
+    const flag = _el('img', { className: 'flag', src: `${countryFlag}` });
 
     const countryDiv = _el('div', { className: 'country-mini__card' });
 
@@ -89,10 +122,10 @@ async function main() {
     countryUl.onclick = handleCountryClick;
 
   }
-  
+
   countriesCard.append(div);
 
-  const controlPanel = _el('div', { className: 'control-panel'});
+  const controlPanel = _el('div', { className: 'control-panel' });
 
   const nextButton = _el('button', {
     className: 'country__next_btn',
@@ -110,11 +143,11 @@ async function main() {
   nextButton.onclick = () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
-  
+
     if (activeElement) {
       const parentDiv = activeElement.closest('.country-mini__card');
       const nextDiv = parentDiv.nextElementSibling;
-  
+
       if (nextDiv) {
         const nextH1 = nextDiv.querySelector('h1');
         if (nextH1) {
@@ -137,11 +170,11 @@ async function main() {
   prevButton.onclick = () => {
     const activeClass = 'countries-list__element--active';
     const activeElement = document.querySelector(`.${activeClass}`);
-  
+
     if (activeElement) {
       const parentDiv = activeElement.closest('.country-mini__card');
       const prevDiv = parentDiv.previousElementSibling;
-  
+
       if (prevDiv) {
         const prevH1 = prevDiv.querySelector('h1');
         if (prevH1) {
@@ -159,12 +192,6 @@ async function main() {
       }
     }
   };
-
-  const weatherDetails = await getWeather();
-  console.log(weatherDetails);
-
-  countryDetails('HUN');
-
 }
 
 
