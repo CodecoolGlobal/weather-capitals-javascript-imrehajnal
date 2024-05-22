@@ -99,6 +99,8 @@ function displayWeather(country) {
   const day = country.forecast.forecastday[0];
   const currentLocation = country.location;
 
+  console.log(days);
+
   const cardName = _el('div', { className: 'card-header__name'}); //Fejléc a fejléc felett
   const cardHeader = _el('div', { className: 'card-header' }); // days
   const cardBody = _el('div', { className: 'card-body' }); // weather hours
