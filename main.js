@@ -6,6 +6,8 @@ import { neighboringCapitals } from './neighboring-capitals';
 import getWeather from './api-client/getWeatherDetails.js';
 
 export let choosenCountry = '';
+let choosenCountryName = '';
+const countries = await getCountries();
 
 async function countryDetails(cca3) {
   const details = await getCountryDetails(cca3);
@@ -17,8 +19,8 @@ async function countryDetails(cca3) {
 async function handleCountryClick(event) {
   const target = event.currentTarget;
   choosenCountry = target.dataset.cc;
-  console.log(choosenCountry);
   await activateCountry(target);
+  choosenCountryName = findCountryName(countries, choosenCountry);
 
   /////////////////////////////////////////////////////
   const parentCard = this.closest('.country-mini__card');
@@ -46,8 +48,15 @@ async function activateCountry(el) {
   const details = await getCountryDetails(cc);
 }
 
+function findCountryName(countries, cca3){
+  for(const country of countries){
+    if (country.cca3 === cca3){
+      return country.name.common;
+    }
+  }
+}
+
 async function main() {
-  const countries = await getCountries();
   
   const div = _el('div', { className: 'countries-list' });
   const countriesCard = document.querySelector('#countriesCard');
@@ -83,7 +92,6 @@ async function main() {
   
   countriesCard.append(div);
 
-  // const countriesListUl = document.querySelector('.countries-list');
   const controlPanel = _el('div', { className: 'control-panel'});
 
   const nextButton = _el('button', {
@@ -111,7 +119,7 @@ async function main() {
         const nextH1 = nextDiv.querySelector('h1');
         if (nextH1) {
           choosenCountry = nextH1.dataset.cc;
-          console.log(choosenCountry);
+          choosenCountryName = findCountryName(countries, choosenCountry);
           activateCountry(nextH1);
 
 
@@ -138,7 +146,7 @@ async function main() {
         const prevH1 = prevDiv.querySelector('h1');
         if (prevH1) {
           choosenCountry = prevH1.dataset.cc;
-          console.log(choosenCountry);
+          choosenCountryName = findCountryName(countries, choosenCountry);
           activateCountry(prevH1);
 
           //////////////////////////////////////////////////////////////
