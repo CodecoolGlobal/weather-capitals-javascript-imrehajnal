@@ -30,7 +30,7 @@
     gap: 0.5rem;
     overflow-y: auto;
     width: 90.5rem;
-    height: 37.1rem;
+    height: 24.3rem;
     background: #1e1e1e;
 }
 
@@ -43,7 +43,7 @@
     margin-left: 0.5rem;
     border-radius: 10px;
     text-align: center;
-    height: 36rem;
+    height: 23rem;
 }
 
 .weather-card-body__text {
@@ -73,6 +73,11 @@
   height: 5rem;
 }
 
+.weather-text-temp {
+  font-size: medium; 
+  margin-bottom: 1.5rem;
+}
+
 .weather-text-wind:nth-child(5)::before {
   display: flex;
   content: 'Wind';
@@ -82,14 +87,7 @@
 
 .weather-text-wind {
   font-size: medium;
-  height: -5rem;
 }
-
-
-
-
-
-
 
 ::-webkit-scrollbar {
   width: 10px; 
@@ -157,7 +155,7 @@
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 30%;
   margin-left: 18rem;
-  margin-top: 5rem;
+  margin-top: 0rem;
   
 }
 
@@ -254,6 +252,22 @@ button {
 .country-mini__card--active {
   background-color: #363636;
   border: 1px solid rgb(92, 92, 92);
+}
+
+.card-header__name {
+  border: 1px solid #363636;
+  background-color: #1e1e1e;
+  margin-top: 3.0rem;
+  margin-left: 2rem;
+  height: 15rem;
+  width: 90rem;
+  border-radius: 5px;
+}
+
+.weather-card__title{
+  text-align: center;
+  margin: 1rem;
+  
 }
 
 
