@@ -29,7 +29,7 @@ body {
 
 #countriesCard{
   width: 15rem;
-  height: 51rem;
+  height: 50.4rem;
   background: #1e1e1e;
   margin-top: 2rem;
   margin-left: 2rem;
@@ -63,7 +63,7 @@ body {
   overflow-x: hidden; /* Vízszintes görgetés tiltása */
   scrollbar-width: none;
   width: 15rem;
-  height: 48rem;
+  height: 47.1rem;
 }
 
 .countries-list__element > .country-capital{
@@ -104,4 +104,41 @@ button {
   border: 1px solid rgb(92, 92, 92);
 }
 
+
+@media (max-width: 1366px), (max-height: 768px) {
+  #countriesCard{
+    width: 15rem;
+    height: 40.4rem;
+    background: #1e1e1e;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    border-radius: 10px;
+  }
+
+  .country-mini__card{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    text-align: center;
+    place-items: center;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    margin: 0.5rem;
+    /*border: 1px solid rgb(75, 75, 75);*/
+    border-radius: 3px;
+    background-color: #272727;
+  
+  }
+
+  .countries-list{
+    overflow: hidden;
+    overflow-y: auto; /* Csak függőleges görgetés */
+    overflow-x: hidden; /* Vízszintes görgetés tiltása */
+    scrollbar-width: none;
+    width: 15rem;
+    height: 37.7rem;
+  }
+}
 
