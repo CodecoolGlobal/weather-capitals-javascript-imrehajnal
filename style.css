@@ -20,25 +20,25 @@
   grid-template-columns: repeat(24, 1fr);
     width: 6rem;
     margin-top: 2rem;
-    margin-left: 10rem;
+    margin-left: 2rem;
     border-radius: 20px 20px 0 0;
     gap: 0.5rem;
     overflow-y: auto;
-    width: 60rem;
-    height: 28.1rem;
-    background: rgba(28, 26, 34, 0.199);
+    width: 90.5rem;
+    height: 37.1rem;
+    background: #1e1e1e;
 }
 
 
 
 .weather-card-body__hour-div{
-  background-color: #272727;
-    width: 8rem;
-    margin-top: 2rem;
-    margin-left: 1.3rem;
-    border-radius: 20px;
+  background-color: rgb(59, 59, 59);
+    width: 5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 10px;
     text-align: center;
-    height: 25rem;
+    height: 36rem;
 }
 
 .weather-card-body__text {
@@ -51,22 +51,39 @@
     content: '';
     display: block;
     height: 2px;
-    margin-left: 1.8rem;
+    margin-left: 1rem;
     margin-top: 0.5rem;
-    width: 70px;
+    width: 50px;
 }
 
 .weather-text:nth-child(5)::before {
   display: flex;
   content: 'Wind';
   justify-content: center;
+  margin-top: 0;
 }
-
 
 .weather-text {
-  font-size: large;
-  height: 3rem;
+  font-size: medium;
+  height: 5rem;
 }
+
+.weather-text-wind:nth-child(5)::before {
+  display: flex;
+  content: 'Wind';
+  justify-content: center;
+  margin-top: 0;
+}
+
+.weather-text-wind {
+  font-size: medium;
+  height: -5rem;
+}
+
+
+
+
+
 
 
 ::-webkit-scrollbar {
@@ -92,10 +109,12 @@
 
 #weatherCard {
   margin-left: 0;
+  
+
 }
 
 .weather-days{
-  background-color: #1e1e1e;
+  background-color: #272727;
   width: 6rem;
   margin-top: 2rem;
   margin-left: 0.45rem;
@@ -209,7 +228,11 @@ body {
   object-fit: cover;
 }
 
-.control-panel {}
+.control-panel {
+  margin-top: 0.5rem;
+  margin-left: 2.5rem;
+
+}
 
 button {
   width: 5rem;
@@ -276,7 +299,7 @@ button {
   }
 
   .weather-days{
-    background-color: #1e1e1e;
+    background-color: #272727;
     width: 5rem;
     margin-top: 2rem;
     margin-left: 0.45rem;
