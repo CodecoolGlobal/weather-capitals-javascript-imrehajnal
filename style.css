@@ -17,7 +17,46 @@
 
 .card-body{
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(24, 1fr);
+  background-color: #1e1e1e;
+    width: 6rem;
+    margin-top: 2rem;
+    margin-left: 3.5rem;
+    border-radius: 20px 20px 0 0;
+    gap: 3rem;
+    overflow-y: auto;
+    overflow-y: auto;
+    width: 60rem;
+    height: 35.1rem;
+}
+
+.weather-card-body__hour-div{
+  background-color: #8a1919;
+    width: 8rem;
+    margin-top: 2rem;
+    margin-left: 1.45rem;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px; 
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #575757; 
+  border-radius: 10px; 
+ 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a3a3a3; 
+  border-radius: 10px; 
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scroll thumb on hover */
 }
 
 #weatherCard {
