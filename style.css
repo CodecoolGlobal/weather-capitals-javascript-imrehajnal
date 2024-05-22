@@ -12,16 +12,34 @@
 
 #app {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 20% 80%;
+}
+
+#weatherCard {
+  border: 1px solid red;
+  margin-left: 0;
+}
+
+.weather-days{
+  background-color: #1e1e1e;
+  width: 6rem;
+  margin: 2rem;
+  text-align: center;
+  place-items: center;
+  border-radius: 20px;
+}
+
+.weather-days__h1{
+  font-size: medium;
 }
 
 .card-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 10% 10% 10% 10% 10% ;
 }
 
 body {
-  background: #171717;
+  background: rgb(17, 16, 21);
 }
 
 .countries-list__element {
