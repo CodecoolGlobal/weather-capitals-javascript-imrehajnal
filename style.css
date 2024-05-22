@@ -15,6 +15,11 @@
   grid-template-columns: 20% 70%;
 }
 
+.card-header__name{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .card-body{
   display: grid;
   grid-template-columns: repeat(24, 1fr);
