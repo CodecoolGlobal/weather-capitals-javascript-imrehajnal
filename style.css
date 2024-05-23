@@ -147,13 +147,14 @@
   place-items: center;
   border-radius: 20px ;
   margin-bottom: 2rem;
+  
 }
 
 .weather-days--active {
   position: relative;
   border-radius: 20px 20px 0 0;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  width: 8rem;
+  right: 1rem;
   background-color: #00000069;
 
 }
@@ -175,13 +176,42 @@
   height: 2rem;
   background-color: #00000069;
   position: absolute; 
-  left: -15px; /* extend the pseudo-element to the left */
-  right: -15px; /* extend the pseudo-element to the right */
+  left: 0; /* extend the pseudo-element to the left */
+  right: 0; /* extend the pseudo-element to the right */
   top: 10.6rem;  
+}
 
-  
-  
-  mix-blend-mode: multiply; /* Keverési mód beállítása */
+.weather-days--active:nth-child(3)::after {
+  content: "";
+  display: flex;
+  height: 2rem;
+  background-color: #00000069;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 10.6rem;  
+}
+
+.weather-days--active:nth-child(4)::after {
+  content: "";
+  display: flex;
+  height: 2rem;
+  background-color: #00000069;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 10.6rem;  
+}
+
+.weather-days--active:nth-child(5)::after {
+  content: "";
+  display: flex;
+  height: 2rem;
+  background-color: #00000069;
+  position: absolute; 
+  left: 0;
+  right: 0; 
+  top: 10.6rem;  
 }
 
 .weather-days__h1{
