@@ -12,11 +12,12 @@ export let choosenCountryName = '';
 let currentDay = 'Fri';
 
 const countries = await getCountries();
+// const countriesAllData = await 
 
 async function countryDetails(cca3) {
   const details = await getCountryDetails(cca3);
   if (details) {
-    console.log(details);
+    return details;
   }
 }
 
@@ -28,29 +29,27 @@ function getWeekday(dateString) {
   return weekday;
 }
 
-function displayWeatherCountryName(parent, currDay, currLocation){
+async function displayWeatherCountryName(parent, currDay, currLocation) {
   const titleDiv = _el('div', { className: 'weather-card__title' })
   const tempDiv = _el('div', { className: 'weather-card__title' })
   const infoDiv = _el('div', { className: 'weather-card__title' })
 
-  const countryNameMain = _el('h1', {className: 'displayed-country__name_main', innerText: 'Current Country'});
-  const countryName = _el('h1', {className: 'displayed-country__name', innerText: currLocation.country});
-  const capitalName = _el('h2', {className: 'displayed-country__name', innerText: currLocation.name});
-  const time = _el('h3', {className: 'displayed-country__text', innerText: currLocation.localtime});
+  const countryNameMain = _el('h1', { className: 'displayed-country__name_main', innerText: 'Current Country' });
+  const countryName = _el('h1', { className: 'displayed-country__name', innerText: currLocation.country });
+  const capitalName = _el('h2', { className: 'displayed-country__name', innerText: currLocation.name });
+  const time = _el('h3', { className: 'displayed-country__text', innerText: currLocation.localtime });
 
-  const currentWeather = _el('h1', {className: 'displayed-country__name_main', innerText: 'Current Weather'});
-  const icon = _el('img', {className: 'displayed-country__icon', src: currDay.day.condition.icon});
-  const tempMin = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.mintemp_c});
-  const tempMax = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxtemp_c});
+  const currentWeather = _el('h1', { className: 'displayed-country__name_main', innerText: 'Current Weather' });
+  const icon = _el('img', { className: 'displayed-country__icon', src: currDay.day.condition.icon });
+  const tempMin = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.mintemp_c });
+  const tempMax = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.maxtemp_c });
 
-  const weatherDetails = _el('h1', {className: 'displayed-country__name_main', innerText: 'Weather Details'});
-  const air = _el('h2', {className: 'displayed-country__text', innerText: currDay.day.condition.text});
-  const humidity = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.avghumidity});
-  const wind = _el('h3', {className: 'displayed-country__text', innerText: currDay.day.maxwind_kph});
+  const weatherDetails = _el('h1', { className: 'displayed-country__name_main', innerText: 'Neighbours' });
+  const neighboursList = await ListTheNeighbours(choosenCountry, weatherDetails);
 
   titleDiv.append(countryNameMain, countryName, capitalName, time);
   tempDiv.append(currentWeather, icon, tempMin, tempMax);
-  infoDiv.append(weatherDetails, air, humidity, wind);
+  infoDiv.append(weatherDetails, neighboursList);
 
   parent.append(titleDiv, tempDiv, infoDiv);
 }
@@ -101,9 +100,7 @@ function displayWeather(country) {
   const day = country.forecast.forecastday[0];
   const currentLocation = country.location;
 
-  console.log(days);
-
-  const cardName = _el('div', { className: 'card-header__name'}); //Fejléc a fejléc felett
+  const cardName = _el('div', { className: 'card-header__name' }); //Fejléc a fejléc felett
   const cardHeader = _el('div', { className: 'card-header' }); // days
   const cardBody = _el('div', { className: 'card-body' }); // weather hours
 
@@ -119,7 +116,6 @@ function displayWeather(country) {
 async function handleWeatherClick(event) {
   const target = event.currentTarget;
   currentDay = target.id;
-  console.log(currentDay);
 
   const cardBody = document.querySelector('.card-body');
   cardBody.innerHTML = '';
@@ -127,12 +123,12 @@ async function handleWeatherClick(event) {
   const countryWeather = await getWeather(choosenCountryName);
   const days = countryWeather.forecast.forecastday;
 
-    /////////////////////////////////////////////////////
-    const parentCard = this.closest('.weather-days');
-    const allCards = document.querySelectorAll('.weather-days');
-    allCards.forEach(card => card.classList.remove('weather-days--active'));
-    parentCard.classList.add('weather-days--active');
-    /////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////
+  const parentCard = this.closest('.weather-days');
+  const allCards = document.querySelectorAll('.weather-days');
+  allCards.forEach(card => card.classList.remove('weather-days--active'));
+  parentCard.classList.add('weather-days--active');
+  /////////////////////////////////////////////////////
 
   displayWeatherBody(cardBody, days, currentDay);
 }
@@ -142,10 +138,7 @@ async function handleCountryClick(event) {
   choosenCountry = target.dataset.cc;
   await activateCountry(target);
   choosenCountryName = findCountryName(countries, choosenCountry);
-  console.log(await getWeather(choosenCountryName));
   displayWeather(await getWeather(choosenCountryName));
-
-  // displayNeighbours(choosenCountry);
 
   /////////////////////////////////////////////////////
   const parentCard = this.closest('.country-mini__card');
@@ -181,20 +174,37 @@ function findCountryName(countries, cca3) {
   }
 }
 
-// function findNeighbours(){
+async function ListTheNeighbours(cca3, parent) {
+  const countryAllData = await countryDetails(cca3);
+  const neighbours = countryAllData.borders;
+  const neighbourDivList = _el('div', { className: 'displayed-neighbour__div'});
+  
+  for(const neighbour of neighbours){
+    const fullCountryName = await findCountryName(countries, neighbour);
+    const weather = await getWeather(fullCountryName);
+    console.log(weather);
+    const actualTemp_c = weather.forecast.forecastday[0].day.avgtemp_c;
+    const weatherIcon = weather.forecast.forecastday[0].day.condition.icon;
 
-// }
+    const countryEl = _el('h3', { className: 'displayed-country__text', innerText: fullCountryName });
+    const tempEl = _el('h3', { className: 'displayed-country__text', innerText: `${actualTemp_c}°C` });
+    const iconEl = _el('img', { className: 'displayed-country__text', src: weatherIcon });
 
-// function displayNeighbours(country){
+    neighbourDivList.append(countryEl, tempEl, iconEl);
+    parent.append(neighbourDivList);
+  }
 
-// }
+  console.log(neighbours);
+
+  return neighbourDivList;
+}
 
 async function main() {
   const div = _el('div', { className: 'countries-list' });
   const countriesCard = document.querySelector('#countriesCard');
 
   for (const country of countries) {
-    const countryData = await getCountryDetails(country.cca3);
+    const countryData = await countryDetails(country.cca3);
     const countryFlag = countryData.flags.svg;
     const flag = _el('img', { className: 'flag', src: `${countryFlag}` });
 
@@ -285,7 +295,7 @@ async function main() {
         }
       }
     }
-  displayWeather(await getWeather(choosenCountryName));
+    displayWeather(await getWeather(choosenCountryName));
   };
 }
 

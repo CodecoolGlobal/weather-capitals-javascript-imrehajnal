@@ -34,7 +34,29 @@
     background: #00000069;
 }
 
-
+.displayed-neighbour__div{
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  place-items: center;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  width: 80%;
+  margin: 0.5rem;
+  /*border: 1px solid rgb(75, 75, 75);*/
+  border-radius: 3px;
+  background-color: rgba(87, 87, 87, 0.233);
+  overflow: hidden;
+  overflow-y: auto;
+  /* Csak függőleges görgetés */
+  overflow-x: hidden;
+  /* Vízszintes görgetés tiltása */
+  scrollbar-width: none;
+  width: 23.7rem;
+  height: 10rem;
+}
 
 .weather-card-body__hour-div{
   background-color: rgba(31, 31, 31, 0.274);
