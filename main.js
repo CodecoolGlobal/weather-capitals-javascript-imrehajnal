@@ -113,6 +113,18 @@ function displayWeather(country) {
   // weatherCard.append(card); //????????
 }
 
+async function handleNeighboursClick(event){
+  const target = event.currentTarget;
+  console.log(target);
+  const currentCca3 = target.id;
+  console.log(currentCca3);
+  choosenCountry = currentCca3;  
+
+  choosenCountryName = findCountryName(countries, choosenCountry);
+  displayWeather(await getWeather(choosenCountryName));
+
+}
+
 async function handleWeatherClick(event) {
   const target = event.currentTarget;
   currentDay = target.id;
@@ -182,19 +194,17 @@ async function ListTheNeighbours(cca3, parent) {
   for(const neighbour of neighbours){
     const fullCountryName = await findCountryName(countries, neighbour);
     const weather = await getWeather(fullCountryName);
-    console.log(weather);
     const actualTemp_c = weather.forecast.forecastday[0].day.avgtemp_c;
     const weatherIcon = weather.forecast.forecastday[0].day.condition.icon;
 
-    const countryEl = _el('h3', { className: 'displayed-country__text', innerText: fullCountryName });
+    const countryEl = _el('h3', { className: 'displayed-country__text', innerText: fullCountryName, id: neighbour });
     const tempEl = _el('h3', { className: 'displayed-country__text', innerText: `${actualTemp_c}°C` });
     const iconEl = _el('img', { className: 'displayed-country__text', src: weatherIcon });
 
+    countryEl.onclick = handleNeighboursClick;
     neighbourDivList.append(countryEl, tempEl, iconEl);
     parent.append(neighbourDivList);
   }
-
-  console.log(neighbours);
 
   return neighbourDivList;
 }
