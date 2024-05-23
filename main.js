@@ -127,6 +127,13 @@ async function handleWeatherClick(event) {
   const countryWeather = await getWeather(choosenCountryName);
   const days = countryWeather.forecast.forecastday;
 
+    /////////////////////////////////////////////////////
+    const parentCard = this.closest('.weather-days');
+    const allCards = document.querySelectorAll('.weather-days');
+    allCards.forEach(card => card.classList.remove('weather-days--active'));
+    parentCard.classList.add('weather-days--active');
+    /////////////////////////////////////////////////////
+
   displayWeatherBody(cardBody, days, currentDay);
 }
 
