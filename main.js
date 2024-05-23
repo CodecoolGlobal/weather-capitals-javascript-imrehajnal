@@ -36,13 +36,13 @@ async function displayWeatherCountryName(parent, currDay, currLocation) {
 
   const countryNameMain = _el('h1', { className: 'displayed-country__name_main', innerText: 'Current Country' });
   const countryName = _el('h1', { className: 'displayed-country__name', innerText: currLocation.country });
-  const capitalName = _el('h2', { className: 'displayed-country__name', innerText: currLocation.name });
-  const time = _el('h3', { className: 'displayed-country__text', innerText: currLocation.localtime });
+  const capitalName = _el('h3', { className: 'displayed-country__name', innerText: currLocation.name });
+  const time = _el('h4', { className: 'displayed-country__time', innerText: currLocation.localtime });
 
   const currentWeather = _el('h1', { className: 'displayed-country__name_main', innerText: 'Current Weather' });
   const icon = _el('img', { className: 'displayed-country__icon', src: currDay.day.condition.icon });
-  const tempMin = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.mintemp_c });
-  const tempMax = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.maxtemp_c });
+  const tempMin = _el('h3', { className: 'displayed-country__mintemp', innerText: currDay.day.mintemp_c });
+  const tempMax = _el('h3', { className: 'displayed-country__maxtemp', innerText: currDay.day.maxtemp_c });
 
   const weatherDetails = _el('h1', { className: 'displayed-country__name_main', innerText: 'Neighbours' });
   const neighboursList = await ListTheNeighbours(choosenCountry, weatherDetails);
@@ -199,7 +199,7 @@ async function ListTheNeighbours(cca3, parent) {
 
     const countryEl = _el('h3', { className: 'displayed-country__text', innerText: fullCountryName, id: neighbour });
     const tempEl = _el('h3', { className: 'displayed-country__text', innerText: `${actualTemp_c}°C` });
-    const iconEl = _el('img', { className: 'displayed-country__text', src: weatherIcon });
+    const iconEl = _el('img', { className: 'displayed-country__imgX', src: weatherIcon });
 
     countryEl.onclick = handleNeighboursClick;
     neighbourDivList.append(countryEl, tempEl, iconEl);

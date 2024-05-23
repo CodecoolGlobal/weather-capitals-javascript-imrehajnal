@@ -40,21 +40,15 @@
   align-items: center;
   text-align: center;
   place-items: center;
-  top: 50%;
-  left: 50%;
-  height: auto;
-  width: 80%;
   margin: 0.5rem;
-  /*border: 1px solid rgb(75, 75, 75);*/
   border-radius: 3px;
   overflow: hidden;
   overflow-y: auto;
-  /* Csak függőleges görgetés */
   overflow-x: hidden;
-  /* Vízszintes görgetés tiltása */
   scrollbar-width: none;
   width: 23.7rem;
   height: 10rem;
+
 }
 
 .weather-card-body__hour-div{
@@ -222,10 +216,21 @@
     content: '';
     display: block;
     height: 2px;
-    margin-left: 1.4rem;
+    margin-left: 1.5rem;
     margin-top: 0.5rem;
     width: 50px;
 }
+
+.weather-days--active>.weather-days__h1::after{
+  background-color: #efefef; 
+  content: '';
+  display: block;
+  height: 2px;
+  margin-left: 1.7rem;
+  margin-top: 0.5rem;
+  width: 75px;
+}
+
 
 .max-temp {
   font-size: large;
@@ -373,4 +378,63 @@ button {
   background: #14141496;
 }
 
+.displayed-country__name {
+  margin: 0.5rem;
+}
+
+.displayed-country__name:nth-child(3) {
+  margin: 0.5rem;
+  color: rgb(202, 202, 202);
+}
+
+.displayed-country__time {
+  color: rgb(226, 226, 226);
+}
+
+.displayed-country__time::before {
+  content: 'Current date and time';
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  border-radius: 10px;
+  background: #14141496;
+  font-weight: 900;
+}
+
+.displayed-country__mintemp::after {
+  content: '°C';
+}
+
+.displayed-country__mintemp::before {
+  content: 'Min:    ';
+}
+
+.displayed-country__mintemp {
+  margin: 0.8rem;
+}
+
+.displayed-country__maxtemp{
+  margin: 0;
+}
+
+.displayed-country__maxtemp::after {
+  content: '°C';
+}
+
+.displayed-country__maxtemp::before {
+  content: 'Max:    ';
+}
+
+.displayed-country__text {
+  margin-block-end: -2rem;
+  margin-block-start: -2rem;
+}
+
+.displayed-country__imgX {
+  width: 2.4rem;
+  height: 2rem;
+  margin-block-start: -0.1rem;
+  
+}
 
