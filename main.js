@@ -47,10 +47,6 @@ async function displayWeatherCountryName(parent, currDay, currLocation) {
   const weatherDetails = _el('h1', { className: 'displayed-country__name_main', innerText: 'Neighbours' });
   const neighboursList = await ListTheNeighbours(choosenCountry, weatherDetails);
 
-  const air = _el('h2', { className: 'displayed-country__text', innerText: currDay.day.condition.text });
-  const humidity = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.avghumidity });
-  const wind = _el('h3', { className: 'displayed-country__text', innerText: currDay.day.maxwind_kph });
-
   titleDiv.append(countryNameMain, countryName, capitalName, time);
   tempDiv.append(currentWeather, icon, tempMin, tempMax);
   infoDiv.append(weatherDetails, neighboursList);
@@ -182,17 +178,19 @@ async function ListTheNeighbours(cca3, parent) {
   const countryAllData = await countryDetails(cca3);
   const neighbours = countryAllData.borders;
   const neighbourDivList = _el('div', { className: 'displayed-neighbour__div'});
-  console.log(countryAllData);
   
   for(const neighbour of neighbours){
     const fullCountryName = await findCountryName(countries, neighbour);
     const weather = await getWeather(fullCountryName);
+    console.log(weather);
     const actualTemp_c = weather.forecast.forecastday[0].day.avgtemp_c;
+    const weatherIcon = weather.forecast.forecastday[0].day.condition.icon;
 
     const countryEl = _el('h3', { className: 'displayed-country__text', innerText: fullCountryName });
-    const tempEl = _el('h3', { className: 'displayed-country__text', innerText: actualTemp_c });
+    const tempEl = _el('h3', { className: 'displayed-country__text', innerText: `${actualTemp_c}°C` });
+    const iconEl = _el('img', { className: 'displayed-country__text', src: weatherIcon });
 
-    neighbourDivList.append(countryEl, tempEl);
+    neighbourDivList.append(countryEl, tempEl, iconEl);
     parent.append(neighbourDivList);
   }
 
