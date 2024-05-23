@@ -9,7 +9,7 @@ const weatherCard = document.querySelector('#weatherCard');
 
 export let choosenCountry = '';
 export let choosenCountryName = '';
-let currentDay = 'Wed';
+let currentDay = 'Fri';
 
 const countries = await getCountries();
 
